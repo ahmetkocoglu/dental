@@ -29,7 +29,7 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('register', 'register')->name('api-register');
 });
 
-Route::controller(DoctorController::class)->prefix('doctor')->group(function () {
+Route::controller(DoctorController::class)->prefix('/doctor')->group(function () {
     Route::get('/', 'index')->name('list');
     Route::get('/{id}', 'show')->name('show');
     Route::post('/', 'store')->name('store');
@@ -37,7 +37,7 @@ Route::controller(DoctorController::class)->prefix('doctor')->group(function () 
     Route::delete('{id}', 'delete')->name('delete');
 });
 
-Route::controller(ClinicController::class)->prefix('clinic')->group(function () {
+Route::controller(ClinicController::class)->prefix('/clinic')->group(function () {
     Route::get('/', 'index')->name('list');
     Route::get('/{id}', 'show')->name('show');
     Route::post('/', 'store')->name('store');
@@ -45,7 +45,7 @@ Route::controller(ClinicController::class)->prefix('clinic')->group(function () 
     Route::delete('{id}', 'delete')->name('delete');
 });
 
-Route::controller(TreatmentController::class)->prefix('treatment')->group(function () {
+Route::controller(TreatmentController::class)->prefix('/treatment')->group(function () {
     Route::get('/', 'index')->name('list');
     Route::get('/{id}', 'show')->name('show');
     Route::post('/', 'store')->name('store');
@@ -53,7 +53,7 @@ Route::controller(TreatmentController::class)->prefix('treatment')->group(functi
     Route::delete('{id}', 'delete')->name('delete');
 });
 
-Route::controller(AppointmentController::class)->prefix('appointment')->group(function () {
+Route::controller(AppointmentController::class)->prefix('/appointment')->group(function () {
     Route::get('/', 'index')->name('list');
     Route::get('/{id}', 'show')->name('show');
     Route::post('/', 'store')->name('store');
