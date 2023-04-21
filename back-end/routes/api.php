@@ -1,6 +1,10 @@
 <?php
 
+use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\ClinicController;
+use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\TreatmentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,4 +27,36 @@ Route::controller(AuthController::class)->group(function () {
     Route::get('test', 'test')->middleware(['guest'])->name('api-test');
     Route::post('login', 'login')->name('api-login');
     Route::post('register', 'register')->name('api-register');
+});
+
+Route::controller(DoctorController::class)->prefix('doctor')->group(function () {
+    Route::get('/', 'index')->name('list');
+    Route::get('/{id}', 'show')->name('show');
+    Route::post('/', 'store')->name('store');
+    Route::put('/{id}', 'update')->name('update');
+    Route::delete('{id}', 'delete')->name('delete');
+});
+
+Route::controller(ClinicController::class)->prefix('clinic')->group(function () {
+    Route::get('/', 'index')->name('list');
+    Route::get('/{id}', 'show')->name('show');
+    Route::post('/', 'store')->name('store');
+    Route::put('/{id}', 'update')->name('update');
+    Route::delete('{id}', 'delete')->name('delete');
+});
+
+Route::controller(TreatmentController::class)->prefix('treatment')->group(function () {
+    Route::get('/', 'index')->name('list');
+    Route::get('/{id}', 'show')->name('show');
+    Route::post('/', 'store')->name('store');
+    Route::put('/{id}', 'update')->name('update');
+    Route::delete('{id}', 'delete')->name('delete');
+});
+
+Route::controller(AppointmentController::class)->prefix('appointment')->group(function () {
+    Route::get('/', 'index')->name('list');
+    Route::get('/{id}', 'show')->name('show');
+    Route::post('/', 'store')->name('store');
+    Route::put('/{id}', 'update')->name('update');
+    Route::delete('{id}', 'delete')->name('delete');
 });

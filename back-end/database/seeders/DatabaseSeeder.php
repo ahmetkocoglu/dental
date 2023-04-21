@@ -35,5 +35,8 @@ class DatabaseSeeder extends Seeder
         $role->syncPermissions($permissions);
 
         $user->assignRole([$role->id]);
+
+        \App\Models\Doctor::factory(100)->create();
+        \App\Models\Treatment::factory(100)->create();
     }
 }
