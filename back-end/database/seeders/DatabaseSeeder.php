@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,7 +16,7 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-         \App\Models\User::factory()->create([
+        $user = \App\Models\User::create([
              'name' => 'Ahmet Koçoğlu',
              'email' => 'akocoglu@gmail.com',
              'password' => bcrypt('12345678'),
@@ -24,5 +26,14 @@ class DatabaseSeeder extends Seeder
              'created_at' => now(),
              'updated_at' => now(),
          ]);
+
+        $role = Role::create(['name' => 'admin']);
+        $role = Role::create(['name' => 'super admin']);
+
+        $permissions = Permission::pluck('id','id')->all();
+
+        $role->syncPermissions($permissions);
+
+        $user->assignRole([$role->id]);
     }
 }
