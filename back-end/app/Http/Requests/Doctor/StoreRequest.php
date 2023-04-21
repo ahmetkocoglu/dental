@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Appointment;
+namespace App\Http\Requests\Doctor;
 
 use App\Constants\ErrorCodes;
 use App\Http\Results\OperationResult;
@@ -19,18 +19,18 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'doctor_id' => ['required', 'integer'],
-            'appointment_date' => ['required'],
-            'treatments' => ['required'],
+            'name' => ['required', 'min:3', 'string'],
+            'phone' => ['required', 'min:3', 'string'],
+            'photo_path' => ['required', 'min:3', 'string'],
         ];
     }
 
     public function attributes(): array
     {
         return [
-            'doctor_id' => 'Doctor ID',
-            'appointment_date' => 'Randevu Tarihi',
-            'treatments' => 'Tedaviler',
+            'name' => 'Doktor Adı',
+            'phone' => 'Telefon No',
+            'photo_path' => 'Resim Yolu',
         ];
     }
 

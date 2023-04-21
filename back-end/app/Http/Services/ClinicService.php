@@ -17,7 +17,6 @@ class ClinicService
             $query = datatables()->eloquent(Clinic::query())->toArray();
         } else {
             $query = Clinic::query()
-                ->orderBy('sort')
                 ->orderBy('id', 'desc')
                 ->get()->toArray();
         }
@@ -66,8 +65,8 @@ class ClinicService
         $result = new OperationResult();
 
         $insert = Clinic::create([
-            'name' => $request['company_type_name'],
-            'sort' => $request['sort'],
+            'name' => $request['name'],
+            'doctor_id' => $request['doctor_id'],
         ]);
 
         if (!$insert) {
@@ -90,8 +89,8 @@ class ClinicService
         $result = new OperationResult();
 
         $update = Clinic::where('id', $request['id'])->update([
-            'name' => $request['company_type_name'],
-            'sort' => $request['sort'],
+            'name' => $request['name'],
+            'doctor_id' => $request['doctor_id'],
         ]);
 
         if (!$update) {

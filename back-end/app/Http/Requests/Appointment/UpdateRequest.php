@@ -19,18 +19,20 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id' => ['required', 'integer', 'exists:company_activity_definitions,id'],
-            'company_activity_name' => ['required', 'min:3', 'string'],
-            'sort' => ['nullable', 'numeric', 'max_digits:4'],
+            'id' => ['required', 'integer', 'exists:appointments,id'],
+            'doctor_id' => ['required', 'integer'],
+            'appointment_date' => ['required'],
+            'treatments' => ['required'],
         ];
     }
 
     public function attributes(): array
     {
         return [
-            'id' => 'Firma Tipi ID',
-            'company_activity_name' => 'Firma Faaliyet Adı',
-            'sort' => 'Sıra No',
+            'id' => 'Tedavi ID',
+            'doctor_id' => 'Doctor ID',
+            'appointment_date' => 'Randevu Tarihi',
+            'treatments' => 'Tedaviler',
         ];
     }
 

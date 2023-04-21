@@ -17,7 +17,6 @@ class TreatmentService
             $query = datatables()->eloquent(Treatment::query())->toArray();
         } else {
             $query = Treatment::query()
-                ->orderBy('sort')
                 ->orderBy('id', 'desc')
                 ->get()->toArray();
         }
@@ -66,8 +65,7 @@ class TreatmentService
         $result = new OperationResult();
 
         $insert = Treatment::create([
-            'name' => $request['company_type_name'],
-            'sort' => $request['sort'],
+            'name' => $request['name'],
         ]);
 
         if (!$insert) {
@@ -90,8 +88,7 @@ class TreatmentService
         $result = new OperationResult();
 
         $update = Treatment::where('id', $request['id'])->update([
-            'name' => $request['company_type_name'],
-            'sort' => $request['sort'],
+            'name' => $request['name'],
         ]);
 
         if (!$update) {

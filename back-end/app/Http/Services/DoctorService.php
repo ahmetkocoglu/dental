@@ -17,7 +17,6 @@ class DoctorService
             $query = datatables()->eloquent(Doctor::query())->toArray();
         } else {
             $query = Doctor::query()
-                ->orderBy('sort')
                 ->orderBy('id', 'desc')
                 ->get()->toArray();
         }
@@ -66,8 +65,9 @@ class DoctorService
         $result = new OperationResult();
 
         $insert = Doctor::create([
-            'name' => $request['company_type_name'],
-            'sort' => $request['sort'],
+            'name' => $request['name'],
+            'phone' => $request['phone'],
+            'photo_path' => $request['photo_path'],
         ]);
 
         if (!$insert) {
@@ -90,8 +90,9 @@ class DoctorService
         $result = new OperationResult();
 
         $update = Doctor::where('id', $request['id'])->update([
-            'name' => $request['company_type_name'],
-            'sort' => $request['sort'],
+            'name' => $request['name'],
+            'phone' => $request['phone'],
+            'photo_path' => $request['photo_path'],
         ]);
 
         if (!$update) {

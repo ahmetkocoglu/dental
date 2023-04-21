@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Appointment;
+namespace App\Http\Requests\Doctor;
 
 use App\Constants\ErrorCodes;
 use App\Http\Results\OperationResult;
@@ -9,7 +9,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Symfony\Component\HttpFoundation\Response;
 
-class StoreRequest extends FormRequest
+class UpdateRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -19,20 +19,28 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'doctor_id' => ['required', 'integer'],
-            'appointment_date' => ['required'],
-            'treatments' => ['required'],
+            'id' => ['required', 'integer', 'exists:doctors,id'],
+            'name' => ['required', 'min:3', 'string'],
+            'phone' => ['required', 'min:3', 'string'],
+            'photo_path' => ['required', 'min:3', 'string'],
         ];
     }
 
     public function attributes(): array
     {
         return [
-            'doctor_id' => 'Doctor ID',
-            'appointment_date' => 'Randevu Tarihi',
-            'treatments' => 'Tedaviler',
+            'id' => 'Doktor ID',
+            'name' => 'Doktor Adı',
+            'phone' => 'Telefon No',
+            'photo_path' => 'Resim Yolu',
         ];
     }
+
+    protected function prepareForValidation()
+    {
+        $this->merge(['id' => $this->segment(5)]);
+    }
+
 
     protected function failedValidation(Validator $validator)
     {

@@ -19,14 +19,14 @@ class ShowRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id' => ['required', 'integer', 'exists:company_activity_definitions,id'],
+            'id' => ['required', 'integer', 'exists:appointments,id'],
         ];
     }
 
     public function attributes(): array
     {
         return [
-            'id' => 'Firma Faaliyet ID',
+            'id' => 'Tedavi ID',
         ];
     }
 

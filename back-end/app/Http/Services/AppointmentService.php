@@ -17,7 +17,6 @@ class AppointmentService
             $query = datatables()->eloquent(Appointment::query())->toArray();
         } else {
             $query = Appointment::query()
-                ->orderBy('sort')
                 ->orderBy('id', 'desc')
                 ->get()->toArray();
         }
@@ -66,8 +65,9 @@ class AppointmentService
         $result = new OperationResult();
 
         $insert = Appointment::create([
-            'name' => $request['company_type_name'],
-            'sort' => $request['sort'],
+            'doctor_id' => $request['doctor_id'],
+            'appointment_date' => $request['appointment_date'],
+            'treatments' => $request['treatments'],
         ]);
 
         if (!$insert) {
@@ -90,8 +90,9 @@ class AppointmentService
         $result = new OperationResult();
 
         $update = Appointment::where('id', $request['id'])->update([
-            'name' => $request['company_type_name'],
-            'sort' => $request['sort'],
+            'doctor_id' => $request['doctor_id'],
+            'appointment_date' => $request['appointment_date'],
+            'treatments' => $request['treatments'],
         ]);
 
         if (!$update) {
