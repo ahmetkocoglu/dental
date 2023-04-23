@@ -26,7 +26,7 @@ class DeleteRequest extends FormRequest
     public function attributes(): array
     {
         return [
-            'id' => 'Firma Faaliyet ID',
+            'id' => 'Doktor ID',
         ];
     }
 

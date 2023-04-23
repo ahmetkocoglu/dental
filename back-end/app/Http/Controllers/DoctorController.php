@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Appointment\DeleteRequest;
-use App\Http\Requests\Appointment\IndexRequest;
-use App\Http\Requests\Appointment\ShowRequest;
-use App\Http\Requests\Appointment\StoreRequest;
-use App\Http\Requests\Appointment\UpdateRequest;
+use App\Http\Requests\Doctor\DeleteRequest;
+use App\Http\Requests\Doctor\IndexRequest;
+use App\Http\Requests\Doctor\ShowRequest;
+use App\Http\Requests\Doctor\StoreRequest;
+use App\Http\Requests\Doctor\UpdateRequest;
 use App\Http\Services\DoctorService;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class DoctorController extends Controller
 {

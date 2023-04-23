@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Appointment\DeleteRequest;
-use App\Http\Requests\Appointment\IndexRequest;
-use App\Http\Requests\Appointment\ShowRequest;
-use App\Http\Requests\Appointment\StoreRequest;
-use App\Http\Requests\Appointment\UpdateRequest;
+use App\Http\Requests\Clinic\DeleteRequest;
+use App\Http\Requests\Clinic\IndexRequest;
+use App\Http\Requests\Clinic\ShowRequest;
+use App\Http\Requests\Clinic\StoreRequest;
+use App\Http\Requests\Clinic\UpdateRequest;
 use App\Http\Services\ClinicService;
 use Illuminate\Http\JsonResponse;
 

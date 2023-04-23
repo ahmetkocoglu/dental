@@ -19,7 +19,7 @@ class ShowRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id' => ['required', 'integer', 'exists:doctors,id'],
+            'id' => ['required', 'exists:doctors,id'],
         ];
     }
 
@@ -32,7 +32,7 @@ class ShowRequest extends FormRequest
 
     protected function prepareForValidation()
     {
-        $this->merge(['id' => $this->segment(5)]);
+        $this->merge(['id' => $this->segment(0)]);
     }
 
     protected function failedValidation(Validator $validator)
