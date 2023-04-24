@@ -3,7 +3,7 @@ import authConfig from './config'
 
 if (global?.window && global?.window.localStorage) {
     const token = localStorage.getItem(authConfig.storageTokenKeyName)
-
+    console.log(token)
     if (token && (axios.defaults?.headers && axios.defaults.headers.common)) {
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
     }

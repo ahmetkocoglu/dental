@@ -32,6 +32,7 @@ export const appUsersSlice = createSlice({
             if (action.payload.status){
                 state.isLoginLoading = 'succeeded'
                 state.data = action.payload.data
+                localStorage.setItem(authConfig.storageTokenKeyName, action.payload.data.token)
                 state.isLogin = true
             } else {
                 state.isLoginLoading = 'failed'
