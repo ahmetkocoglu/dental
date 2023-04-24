@@ -29,34 +29,36 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('register', 'register')->name('api-register');
 });
 
-Route::controller(DoctorController::class)->prefix('doctor')->name('doctor.')->group(function () {
-    Route::get('/', 'index')->name('list');
-    Route::get('/{id}', 'show')->name('show');
-    Route::post('/', 'store')->name('store');
-    Route::put('/{id}', 'update')->name('update');
-    Route::delete('{id}', 'delete')->name('delete');
-});
+Route::middleware('auth:sanctum')->group(function () {
+    Route::controller(DoctorController::class)->prefix('doctor')->name('doctor.')->group(function () {
+        Route::get('/', 'index')->name('list');
+        Route::get('/{id}', 'show')->name('show');
+        Route::post('/', 'store')->name('store');
+        Route::put('/{id}', 'update')->name('update');
+        Route::delete('{id}', 'delete')->name('delete');
+    });
 
-Route::controller(ClinicController::class)->prefix('clinic')->name('clinic.')->group(function () {
-    Route::get('/', 'index')->name('list');
-    Route::get('/{id}', 'show')->name('show');
-    Route::post('/', 'store')->name('store');
-    Route::put('/{id}', 'update')->name('update');
-    Route::delete('{id}', 'delete')->name('delete');
-});
+    Route::controller(ClinicController::class)->prefix('clinic')->name('clinic.')->group(function () {
+        Route::get('/', 'index')->name('list');
+        Route::get('/{id}', 'show')->name('show');
+        Route::post('/', 'store')->name('store');
+        Route::put('/{id}', 'update')->name('update');
+        Route::delete('{id}', 'delete')->name('delete');
+    });
 
-Route::controller(TreatmentController::class)->prefix('treatment')->name('treatment.')->group(function () {
-    Route::get('/', 'index')->name('list');
-    Route::get('/{id}', 'show')->name('show');
-    Route::post('/', 'store')->name('store');
-    Route::put('/{id}', 'update')->name('update');
-    Route::delete('{id}', 'delete')->name('delete');
-});
+    Route::controller(TreatmentController::class)->prefix('treatment')->name('treatment.')->group(function () {
+        Route::get('/', 'index')->name('list');
+        Route::get('/{id}', 'show')->name('show');
+        Route::post('/', 'store')->name('store');
+        Route::put('/{id}', 'update')->name('update');
+        Route::delete('{id}', 'delete')->name('delete');
+    });
 
-Route::controller(AppointmentController::class)->prefix('appointment')->name('appointment.')->group(function () {
-    Route::get('/', 'index')->name('list');
-    Route::get('/{id}', 'show')->name('show');
-    Route::post('/', 'store')->name('store');
-    Route::put('/{id}', 'update')->name('update');
-    Route::delete('{id}', 'delete')->name('delete');
+    Route::controller(AppointmentController::class)->prefix('appointment')->name('appointment.')->group(function () {
+        Route::get('/', 'index')->name('list');
+        Route::get('/{id}', 'show')->name('show');
+        Route::post('/', 'store')->name('store');
+        Route::put('/{id}', 'update')->name('update');
+        Route::delete('{id}', 'delete')->name('delete');
+    });
 });
