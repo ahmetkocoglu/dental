@@ -2,9 +2,12 @@
 
 namespace App\Http\Services;
 
+use App\Constants\DateConstants;
 use App\Constants\ErrorCodes;
+use App\Helpers\DateHelper;
 use App\Http\Results\OperationResult;
 use App\Models\Appointment;
+use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response;
 
 class AppointmentService
@@ -64,8 +67,34 @@ class AppointmentService
     {
         $result = new OperationResult();
 
+        $timezoneType = collect((DateHelper::now())->toDateTime())->get('timezone_type');
+
+        $hour = intval(DateHelper::format(DateConstants::DATE_HOUR_FORMAT)) + $timezoneType;
+
+        $query = Appointment::query()
+            ->where('doctor_id', $request['doctor_id'])
+            ->where('appointment_date', $request['appointment_date'])
+            ->get()->toArray();
+
+        if ($query) {
+            $result->setMessage(__('errors.default.crud.store'));
+            $result->setErrorCode(ErrorCodes::APPOINTMENT_ERROR);
+            $result->setHttpStatusCode(Response::HTTP_INTERNAL_SERVER_ERROR);
+
+            return $result;
+        }
+
+        if ($hour > 8 && $hour < 19) {
+            $result->setMessage(__('errors.default.crud.store'));
+            $result->setErrorCode(ErrorCodes::APPOINTMENT_ERROR_TIME);
+            $result->setHttpStatusCode(Response::HTTP_INTERNAL_SERVER_ERROR);
+
+            return $result;
+        }
+
         $insert = Appointment::create([
             'doctor_id' => $request['doctor_id'],
+            'clinic_id' => $request['clinic_id'],
             'appointment_date' => $request['appointment_date'],
             'treatments' => $request['treatments'],
         ]);
@@ -91,6 +120,7 @@ class AppointmentService
 
         $update = Appointment::where('id', $request['id'])->update([
             'doctor_id' => $request['doctor_id'],
+            'clinic_id' => $request['clinic_id'],
             'appointment_date' => $request['appointment_date'],
             'treatments' => $request['treatments'],
         ]);

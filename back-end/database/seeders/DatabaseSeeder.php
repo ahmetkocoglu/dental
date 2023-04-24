@@ -27,16 +27,19 @@ class DatabaseSeeder extends Seeder
              'updated_at' => now(),
          ]);
 
+
         $role = Role::create(['name' => 'admin']);
-        $role = Role::create(['name' => 'super admin']);
-
         $permissions = Permission::pluck('id','id')->all();
+        $role->syncPermissions($permissions);
 
+        $role = Role::create(['name' => 'super admin']);
+        $permissions = Permission::pluck('id','id')->all();
         $role->syncPermissions($permissions);
 
         $user->assignRole([$role->id]);
 
         \App\Models\Doctor::factory(100)->create();
         \App\Models\Treatment::factory(100)->create();
+        \App\Models\Clinic::factory(2)->create();
     }
 }

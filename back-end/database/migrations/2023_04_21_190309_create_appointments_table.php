@@ -14,10 +14,12 @@ return new class extends Migration
         Schema::create('appointments', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('doctor_id')->nullable();
+            $table->unsignedBigInteger('clinic_id')->nullable();
             $table->dateTimeTz('appointment_date', 3);
             $table->json('treatments');
             $table->timestamps();
             $table->foreign('doctor_id')->references('id')->on('doctors')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('clinic_id')->references('id')->on('clinics')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

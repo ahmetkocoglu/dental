@@ -15,6 +15,7 @@ class CreateActivityLogTable extends Migration
             $table->nullableMorphs('subject', 'subject');
             $table->nullableMorphs('causer', 'causer');
             $table->json('properties')->nullable();
+            $table->string('ip_address', 20)->nullable();
             $table->timestamps();
             $table->index('log_name');
         });

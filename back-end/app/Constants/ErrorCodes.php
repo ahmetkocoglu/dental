@@ -17,4 +17,6 @@ class ErrorCodes
     public const DELETE_ERROR = 19;
     public const VALIDATION_ERROR = 20;
     public const REGISTER_IS_USER_ERROR = 30;
+    public const APPOINTMENT_ERROR = 41;
+    public const APPOINTMENT_ERROR_TIME = 42;
 }

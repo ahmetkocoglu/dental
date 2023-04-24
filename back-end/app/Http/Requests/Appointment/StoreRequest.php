@@ -20,6 +20,7 @@ class StoreRequest extends FormRequest
     {
         return [
             'doctor_id' => ['required', 'integer'],
+            'clinic_id' => ['required', 'integer'],
             'appointment_date' => ['required'],
             'treatments' => ['required'],
         ];
@@ -29,6 +30,7 @@ class StoreRequest extends FormRequest
     {
         return [
             'doctor_id' => 'Doctor ID',
+            'clinic_id' => ['required', 'integer'],
             'appointment_date' => 'Randevu Tarihi',
             'treatments' => 'Tedaviler',
         ];

@@ -23,5 +23,7 @@ return [
         ErrorCodes::LOGIN_VALIDATION_ERROR => 'Hatalı parametreler gönderdiniz!',
         ErrorCodes::LOGIN_ATTEMPT_ERROR => 'Kullanıcı bilgileriniz hatalı. Sisteme giriş yapılamadı!',
         ErrorCodes::USER_LIST_ERROR => 'Kullanıcılar yüklenemedi!',
+        ErrorCodes::APPOINTMENT_ERROR => 'Randevu saati geçersiz. Farklı randevu saati seçiniz!',
+        ErrorCodes::APPOINTMENT_ERROR_TIME => 'Randevu saati geçersiz. Gün için geçerli saati seçiniz!',
     ]
 ];
