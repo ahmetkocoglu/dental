@@ -42,6 +42,8 @@ class DoctorService
         $result = new OperationResult();
 
         $query = Doctor::query()
+            ->with('clinic')
+            ->with('appointments')
             ->where('id', $request['id'])
             ->get()->toArray();
 
@@ -67,7 +69,6 @@ class DoctorService
         $insert = Doctor::create([
             'name' => $request['name'],
             'phone' => $request['phone'],
-            'photo_path' => $request['photo_path'],
         ]);
 
         if (!$insert) {

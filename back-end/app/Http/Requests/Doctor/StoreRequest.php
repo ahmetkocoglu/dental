@@ -21,7 +21,6 @@ class StoreRequest extends FormRequest
         return [
             'name' => ['required', 'min:3', 'string'],
             'phone' => ['required', 'min:3', 'string'],
-            'photo_path' => ['required', 'min:3', 'string'],
         ];
     }
 
@@ -30,7 +29,6 @@ class StoreRequest extends FormRequest
         return [
             'name' => 'Doktor Adı',
             'phone' => 'Telefon No',
-            'photo_path' => 'Resim Yolu',
         ];
     }
 

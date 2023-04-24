@@ -42,6 +42,7 @@ class ClinicService
         $result = new OperationResult();
 
         $query = Clinic::query()
+            ->with('doctors')
             ->where('id', $request['id'])
             ->get()->toArray();
 

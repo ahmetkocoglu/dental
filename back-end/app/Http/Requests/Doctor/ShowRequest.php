@@ -32,7 +32,7 @@ class ShowRequest extends FormRequest
 
     protected function prepareForValidation()
     {
-        $this->merge(['id' => $this->segment(0)]);
+        $this->merge(['id' => $this->segment(3)]);
     }
 
     protected function failedValidation(Validator $validator)

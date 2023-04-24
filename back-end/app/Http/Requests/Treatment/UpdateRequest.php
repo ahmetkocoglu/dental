@@ -34,7 +34,7 @@ class UpdateRequest extends FormRequest
 
     protected function prepareForValidation()
     {
-        $this->merge(['id' => $this->segment(5)]);
+        $this->merge(['id' => $this->segment(3)]);
     }
 
 
