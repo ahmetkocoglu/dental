@@ -42,7 +42,6 @@ class DoctorService
         $result = new OperationResult();
 
         $query = Doctor::query()
-            ->with('clinic')
             ->with('appointments')
             ->where('id', $request['id'])
             ->get()->toArray();

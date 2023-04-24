@@ -8,7 +8,7 @@ import axios from 'axios'
 import authConfig from '../../../service/config'
 
 // ** Login User
-export const login = createAsyncThunk('loginUser/fetchData', async (payload: any) => {
+export const login = createAsyncThunk('loginUser/fetchDoctorData', async (payload: any) => {
     const response = await axios.post(authConfig.loginEndpoint, payload)
 
     return response.data
@@ -20,6 +20,7 @@ export const appUsersSlice = createSlice({
         data: [],
         isTestLoading: 'idle',
         isLoginLoading: 'idle',
+        isLogin: false,
         loginErrorMessage: ""
     },
     reducers: {},
@@ -31,6 +32,7 @@ export const appUsersSlice = createSlice({
             if (action.payload.status){
                 state.isLoginLoading = 'succeeded'
                 state.data = action.payload.data
+                state.isLogin = true
             } else {
                 state.isLoginLoading = 'failed'
                 state.loginErrorMessage = action.payload.message

@@ -69,7 +69,9 @@ class AppointmentService
 
         $timezoneType = collect((DateHelper::now())->toDateTime())->get('timezone_type');
 
-        $hour = intval(DateHelper::format(DateConstants::DATE_HOUR_FORMAT)) + $timezoneType;
+        $hour = intval(DateHelper::format(DateConstants::DATE_HOUR_FORMAT, $request['appointment_date'])) + $timezoneType;
+
+        Log::info(DateHelper::format(DateConstants::DATE_TIME_HOUR_FORMAT, $request['appointment_date']));
 
         $query = Appointment::query()
             ->where('doctor_id', $request['doctor_id'])
@@ -84,7 +86,7 @@ class AppointmentService
             return $result;
         }
 
-        if ($hour > 8 && $hour < 19) {
+        if ($hour < 9 && $hour > 18) {
             $result->setMessage(__('errors.default.crud.store'));
             $result->setErrorCode(ErrorCodes::APPOINTMENT_ERROR_TIME);
             $result->setHttpStatusCode(Response::HTTP_INTERNAL_SERVER_ERROR);
@@ -95,7 +97,7 @@ class AppointmentService
         $insert = Appointment::create([
             'doctor_id' => $request['doctor_id'],
             'clinic_id' => $request['clinic_id'],
-            'appointment_date' => $request['appointment_date'],
+            'appointment_date' => DateHelper::format(DateConstants::DATE_TIME_HOUR_FORMAT, $request['appointment_date']),
             'treatments' => $request['treatments'],
         ]);
 
@@ -119,9 +121,6 @@ class AppointmentService
         $result = new OperationResult();
 
         $update = Appointment::where('id', $request['id'])->update([
-            'doctor_id' => $request['doctor_id'],
-            'clinic_id' => $request['clinic_id'],
-            'appointment_date' => $request['appointment_date'],
             'treatments' => $request['treatments'],
         ]);
 

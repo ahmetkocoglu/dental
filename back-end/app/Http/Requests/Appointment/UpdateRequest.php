@@ -20,8 +20,6 @@ class UpdateRequest extends FormRequest
     {
         return [
             'id' => ['required', 'integer', 'exists:appointments,id'],
-            'doctor_id' => ['required', 'integer'],
-            'appointment_date' => ['required'],
             'treatments' => ['required'],
         ];
     }
@@ -30,8 +28,6 @@ class UpdateRequest extends FormRequest
     {
         return [
             'id' => 'Tedavi ID',
-            'doctor_id' => 'Doctor ID',
-            'appointment_date' => 'Randevu Tarihi',
             'treatments' => 'Tedaviler',
         ];
     }

@@ -28,18 +28,18 @@ class DatabaseSeeder extends Seeder
          ]);
 
 
-        $role = Role::create(['name' => 'admin']);
+        $role = Role::create(['name' => 'Clinic']);
         $permissions = Permission::pluck('id','id')->all();
         $role->syncPermissions($permissions);
 
-        $role = Role::create(['name' => 'super admin']);
+        $role = Role::create(['name' => 'Super Clinic']);
         $permissions = Permission::pluck('id','id')->all();
         $role->syncPermissions($permissions);
 
         $user->assignRole([$role->id]);
 
+        \App\Models\Clinic::factory(2)->create();
         \App\Models\Doctor::factory(100)->create();
         \App\Models\Treatment::factory(100)->create();
-        \App\Models\Clinic::factory(2)->create();
     }
 }

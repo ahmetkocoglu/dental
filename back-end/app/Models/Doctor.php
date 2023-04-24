@@ -17,11 +17,6 @@ class Doctor extends Model
         'created_at' => "datetime:d-m-Y",
     ];
 
-    public function clinic(): BelongsTo
-    {
-        return $this->belongsTo(Clinic::class, 'id', 'doctor_id');
-    }
-
     public function appointments(): HasMany
     {
         return $this->hasMany(Appointment::class, 'doctor_id', 'id');

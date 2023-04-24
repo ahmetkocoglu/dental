@@ -1,16 +1,19 @@
-import {AppDispatch, RootState} from "./store";
+import {AppDispatch, RootState} from "../store";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
-import {login} from "./store/apps/login";
-import "./styles.css";
+import { Routes, Route } from 'react-router-dom';
+import {login} from "../store/apps/login";
+import "../style/styles.css";
+import Doctor from "./Doctor";
+import Treatment from "./Treatment";
 
 function Home() {
     // ** Redux
     const dispatch = useDispatch<AppDispatch>()
 
     // ** Selector
-    const isLoginLoading = useSelector((state: RootState) => state.login.isLoginLoading)
-    const loginErrorMessage = useSelector((state: RootState) => state.login.loginErrorMessage)
+    const isLoginLoading: string = useSelector((state: RootState) => state.login.isLoginLoading)
+    const loginErrorMessage: string = useSelector((state: RootState) => state.login.loginErrorMessage)
 
     useEffect(() => {
         if (isLoginLoading === 'succeeded')
@@ -20,28 +23,11 @@ function Home() {
             setIsSubmitted(false);
         }
 
-    }, [isLoginLoading])
+    }, [isLoginLoading, loginErrorMessage])
 
     // React States
     const [errorMessages, setErrorMessages] = useState({name: "", message: ""});
     const [isSubmitted, setIsSubmitted] = useState(false);
-
-    // User Login info
-    const database = [
-        {
-            username: "user1",
-            password: "pass1"
-        },
-        {
-            username: "user2",
-            password: "pass2"
-        }
-    ];
-
-    const errors = {
-        email: "invalid username",
-        password: "invalid password"
-    };
 
     const handleSubmit = (event: any) => {
         event.preventDefault();
@@ -78,10 +64,18 @@ function Home() {
 
     return (
         <div className="app">
-            <div className="login-form">
-                <div className="title">Kullanıcı Girişi</div>
-                {isSubmitted ? <div className="title">Giriş Başarılı</div> : renderForm}
-            </div>
+            {isSubmitted ? (
+                <>
+                    <div className="success-message title">Giriş Başarılı</div>
+                </>
+            ) : (
+                <>
+                    <div className="login-form">
+                        <div className="title">Kullanıcı Girişi</div>
+                        {renderForm}
+                    </div>
+                </>
+            )}
         </div>
     );
 }

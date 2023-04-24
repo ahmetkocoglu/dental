@@ -14,9 +14,4 @@ class Clinic extends Model
     protected $casts = [
         'created_at' => "datetime:d-m-Y",
     ];
-
-    public function doctors(): HasMany
-    {
-        return $this->hasMany(Doctor::class, 'id', 'doctor_id');
-    }
 }

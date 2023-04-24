@@ -67,3 +67,26 @@ label {
     gap: 8px;
     margin: 10px;
 }
+
+.success-message {
+    background-color: white;
+    padding: 2rem;
+    box-shadow: 0 4px 8px 0 rgba(232, 223, 223, 0.2), 0 6px 20px 0 rgba(255, 255, 255, 0.19);
+}
+
+.nav{
+}
+
+.nav a{
+    color: #ffffff;
+    font-size: 18px;
+    padding: 3px 10px;
+}
+
+table{
+    font-size: 14px;
+}
+
+table th{
+    text-align: left;
+}
